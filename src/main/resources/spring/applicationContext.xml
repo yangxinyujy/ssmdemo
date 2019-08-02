@@ -51,9 +51,9 @@
         <!-- 注入数据库连接池 -->
         <property name="dataSource" ref="dataSource"/>
         <!-- 扫描entity包 使用别名 -->
-        <property name="typeAliasesPackage" value="cn.yang.ssm.model"/>
+        <property name="typeAliasesPackage" value="cn.yang.ssmdemo.model"/>
         <!-- 扫描sql配置文件:mapper需要的xml文件 -->
-        <property name="mapperLocations" value="classpath:/mybatis/mapper/*.xml"/>
+<!--        <property name="mapperLocations" value="classpath:/mybatis/mapper/*.xml"/>-->
     </bean>
 
     <!-- 配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
@@ -61,7 +61,7 @@
         <!-- 注入sqlSessionFactory -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <!-- 给出需要扫描Dao接口包 -->
-        <property name="basePackage" value="cn.yang.ssm.mapper"/>
+        <property name="basePackage" value="cn.yang.ssmdemo.mapper"/>
     </bean>
 
     <!--redis-->
@@ -90,30 +90,4 @@
             <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
         </property>
     </bean>
-<!--    &lt;!&ndash; 缓存拦截器配置 &ndash;&gt;-->
-<!--    <bean id="methodCacheInterceptor" class="cn.yang.ssmdemo.interceptor.MethodCacheInterceptor">-->
-<!--        <property name="redisUtil" ref="redisUtil"/>-->
-<!--        <property name="defaultCacheExpireTime" value="${defaultCacheExpireTime}"/>-->
-<!--        &lt;!&ndash; 禁用缓存的类名列表 &ndash;&gt;-->
-<!--        <property name="targetNamesList">-->
-<!--            <list>-->
-<!--                <value></value>-->
-<!--            </list>-->
-<!--        </property>-->
-<!--        &lt;!&ndash; 禁用缓存的方法名列表 &ndash;&gt;-->
-<!--        <property name="methodNamesList">-->
-<!--            <list>-->
-<!--                <value></value>-->
-<!--            </list>-->
-<!--        </property>-->
-<!--    </bean>-->
-<!--    <bean id="redisUtil" class="cn.yang.ssmdemo.util.RedisUtil">-->
-<!--        <property name="redisTemplate" ref="redisTemplate"/>-->
-<!--    </bean>-->
-<!--    &lt;!&ndash;配置切面拦截方法 &ndash;&gt;-->
-<!--    <aop:config proxy-target-class="true">-->
-<!--        &lt;!&ndash;将包下的所有select开头的方法加入拦截去掉select则加入所有方法&ndash;&gt;-->
-<!--        <aop:pointcut id="controllerMethodPointcut" expression="execution(* cn.yang.ssmdemo.service.*.select*(..))"/>-->
-<!--        <aop:advisor advice-ref="methodCacheInterceptor" pointcut-ref="controllerMethodPointcut"/>-->
-<!--    </aop:config>-->
 </beans>
